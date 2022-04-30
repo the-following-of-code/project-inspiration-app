@@ -1,3 +1,4 @@
+const { default: mongoose } = require("mongoose");
 const { Schema, model } = require("mongoose");
 
 // TODO: Please make sure you edit the user model to whatever makes sense in this case
@@ -9,6 +10,10 @@ const userSchema = new Schema(
     },
     email: String,
     password: String,
+    books: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Book"
+    }]
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`
