@@ -1,13 +1,15 @@
+const Book = require("../models/Books.model");
+const mongoose = require("mongoose");
+
 const router = require("express").Router();
 
 /* GET home page */
 router.get("/home", (req, res, next) => {
- 
+
   res.render("home");
 });
 
 router.get("/home/user", (req, res, next)=>{
-  console.log(req.session.user);
   res.render("user/user-profile", req.session.user)
 })
 
@@ -22,6 +24,24 @@ router.get("/home/user/edit/user-create", (req, res, next)=>{
 
 
 router.post("/home/user/edit/user-create", (req, res, next)=>{
+  console.log("route is working");
+  console.log(req.session.user);
+  let newBook = {
+    title: req.body.title,
+    author: req.body.author,
+    cover: req.body.cover
+  }
+Book.create(newBook)
+.then(()=>{
+
+  req.session.user.books.push(newBook._id)
+  console.log("creating book");
+  res.redirect("/home/user")
+})
+.catch(error => {
+  console.log("error creating book in DB", error);
+  next(error);
+})
 
 })
 

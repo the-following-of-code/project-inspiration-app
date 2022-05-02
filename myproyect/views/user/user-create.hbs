@@ -1,6 +1,6 @@
 <h1>Creating new Book</h1>
 
-<form action="home/user/edit/user-create" method="POST">
+<form action="/home/user/edit/user-create" method="POST">
    <label> Title:
       <input type="text" name="title">
    </label>
@@ -11,9 +11,9 @@
        <input type="text" name="cover">
    </label>
 
-   <button type="submit">Submit</button>
+   <button type="submit">create</button>
 </form>
 
-{{#if errorMessage}}
+{{!-- {{#if errorMessage}}
    {{errorMessage}}
-{{/if}}
+{{/if}} --}}
