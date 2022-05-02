@@ -1,3 +1,18 @@
 <h1>HOME PAGE</h1>
 
 <a href="/home/user">My Profile</a>
+{{#each users}}
+
+
+<h3>{{this.username}}</h3>
+
+{{#each this.books}}
+<h5>{{this.title}}</h5>
+<img src="{{this.cover}}" alt="Cover">
+{{/each}}
+
+<a href="/home/{{this._id}}">Profil</a>
+
+<hr>
+
+{{/each}}
