@@ -38,33 +38,6 @@ router.get("/home/user/edit/user-create", (req, res, next)=>{
 })
 
 
-// router.post("/home/user/edit/user-create", (req, res, next)=>{
-//   let newBook = {
-//     title: req.body.title,
-//     author: req.body.author,
-//     cover: req.body.cover
-//   }
-// Book.create(newBook)
-// .then((book)=>{
-//   return book;
- 
-//   // return req.session.user.books.push(book.id);
-// })
-// .then(()=>{
-//   return User.findById(req.session.user._id)
-//     .then((user)=>{
-//       console.log(user);
-//       return;
-//     })
-//   })
-//   .catch()
-//   // console.log(req.session.user);
-//   // res.redirect("/home/user")
-// })
-// .catch(error => {
-//   console.log("error creating book in DB", error);
-//   next(error);
-// });
 
 router.post("/home/user/edit/user-create", (req, res, next)=>{
   let newBook = {
@@ -94,14 +67,12 @@ router.get("/home/:userId", (req, res, next) => {
   console.log(req.params.userId);
 
    User.findById(bookId)
+    .populate('books')
     .then( (userObj) => {
         console.log(userObj);
-       res.render('user/user-visitors', userObj );
+       res.render('user/user-visitors', userObj);
     })
     .catch()
-  
-
-
 })
 
 
