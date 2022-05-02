@@ -1,5 +1,6 @@
 const Book = require("../models/Books.model");
 const mongoose = require("mongoose");
+const User = require("../models/User.model");
 
 const router = require("express").Router();
 
@@ -44,5 +45,22 @@ Book.create(newBook)
 })
 
 })
+
+
+router.get("/home/:userId", (req, res, next) => {
+  const bookId = req.params.userId;
+  console.log(req.params.userId);
+
+   User.findById(bookId)
+    .then( (userObj) => {
+        console.log(userObj);
+       res.render('user/user-visitors', userObj );
+    })
+    .catch()
+  
+
+
+})
+
 
 module.exports = router;
