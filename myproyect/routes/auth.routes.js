@@ -90,6 +90,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
 });
 
 router.get("/", isLoggedOut, (req, res) => {
+
   res.render("index");
 });
 
@@ -146,7 +147,7 @@ router.get("/logout", isLoggedIn, (req, res) => {
     if (err) {
       return res
         .status(500)
-        .render("auth/logout", { errorMessage: err.message });
+        .render("/logout", { errorMessage: err.message });
     }
     res.redirect("/");
   });
