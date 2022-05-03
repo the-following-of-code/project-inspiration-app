@@ -32,6 +32,10 @@ router.get("/home/user", (req, res, next)=>{
     console.log(user);
     res.render("user/user-profile", user)
   })
+  .catch(error => {
+    console.log("error displaying User", error);
+    next(error);
+  })
   
 })
 
@@ -61,12 +65,11 @@ let bookId;
   .then(user=>{
   res.redirect("/home/user")
   })
-  .catch()
+  .catch(error => {
+    console.log("error creating Book in DB", error);
+    next(error);
+  })
 })
-
-
-
-
 
 
 router.get("/home/:userId", (req, res, next) => {
@@ -79,7 +82,22 @@ router.get("/home/:userId", (req, res, next) => {
         console.log(userObj);
        res.render('user/user-visitors', userObj);
     })
-    .catch()
+    .catch(error => {
+      console.log("error displaying Logged in User in HomePage", error);
+      next(error);
+    })
+})
+
+router.post("/home/user/:bookId/delete", (req, res, next)=>{
+  const id = req.params.bookId;
+  Book.findByIdAndRemove(id)
+  .then(()=>{
+   res.redirect("/home/user")
+  })
+  .catch(error => {
+    console.log("error deleting Book in DB", error);
+    next(error);
+  })
 })
 
 
