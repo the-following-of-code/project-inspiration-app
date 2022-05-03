@@ -67,17 +67,30 @@ let bookId;
 
 
 router.get("/home/user/:bookId/edit", (req, res, next) => {
-  const bookId = req.params;
+  const bookId = req.params.bookId;
 
-  console.log(bookId);
-
-    // User.findById(bookId)
-
-
-
-
+  Book.findById(bookId)
+      .then(bookToEdit => {
+        console.log(bookToEdit);
+        
+        res.render('books/book-edit.hbs', bookToEdit);
+      })
+      .catch(error => next(error));
 })
 
+
+router.post('/books/:bookId/edit', (req, res, next) => {
+  const bookId = req.params.bookId;
+  const { title, author, cover } = req.body;
+
+    console.log(req.body);
+ 
+  Book.findByIdAndUpdate(bookId, { title, author, cover }, { new: true })
+    .then(updatedBook => {
+      res.redirect('/home/user')
+    })
+    .catch(error => next(error));
+});
 
 
 

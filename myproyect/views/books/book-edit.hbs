@@ -1,1 +1,26 @@
-<h1>Edit the book</h1>
+
+
+
+<h1>test</h1>
+
+<h2>Edit the book: {{title}}</h2>
+
+<form action="/books/{{_id}}/edit" method="post">
+  <label> Title:
+    <input type="text" name="title" value="{{title}}" />
+  </label>
+
+  <label> Author:
+    <input type="text" name="author" value="{{author}}" />
+  </label>
+
+  {{!-- <label> Description:
+    <textarea name="description" cols="30" rows="4">{{description}}</textarea>
+  </label> --}}
+
+  <label> Cover:
+    <input type="text" name="cover" value="{{cover}}" />
+  </label>
+
+  <button>Save changes</button>
+</form>
