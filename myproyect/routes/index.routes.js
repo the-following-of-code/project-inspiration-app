@@ -22,7 +22,14 @@ router.get("/home", (req, res, next)=>{
 
 
 router.get("/home/user", (req, res, next)=>{
-  res.render("user/user-profile", req.session.user)
+  console.log(req.session.user._id);
+  User.findById(req.session.user._id)
+  .populate("books")
+  .then((user)=>{
+    console.log(user);
+    res.render("user/user-profile", user)
+  })
+  
 })
 
 

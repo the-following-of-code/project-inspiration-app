@@ -2,13 +2,13 @@
 
 <p>{{username}}</p>
 
+{{#each books}}
 
-<h2>My favourite books</h2>
+<h5>{{this.title}}</h5>
+<img src="{{this.cover}}" alt="{{this.title}}">
+<a href="/home/user/{{this._id}}/edit">Edit Book</a>
 
-<img src="{{cover}}" alt="">
-<h3>{{title}}</h3>
-<h4>{{author}}</h4>
-
+{{/each}}
 
 <a href="/home/user/edit">Edit Profile</a>
 {{!-- 
