@@ -19,10 +19,7 @@ router.get("/home", (req, res, next)=>{
   });
     
 })
-// router.get("/home", (req, res, next) => {
 
-//   res.render("home");
-// });
 
 router.get("/home/user", (req, res, next)=>{
   res.render("user/user-profile", req.session.user)
@@ -56,6 +53,25 @@ let bookId;
   })
   .catch()
 })
+
+
+
+
+
+
+router.get("/home/user/:bookId/edit", (req, res, next) => {
+  const bookId = req.params;
+
+  console.log(bookId);
+
+    // User.findById(bookId)
+
+
+
+
+})
+
+
 
 
 
