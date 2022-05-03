@@ -1,8 +1,6 @@
 <h1>HOME PAGE</h1>
 
-<a href="/home/user">My Profile</a>
 {{#each users}}
-
 
 <h3>{{this.username}}</h3>
 
@@ -13,7 +11,5 @@
 
 <a href="/home/{{this._id}}">Visit the profile</a>
 
-
 <hr>
-
 {{/each}}

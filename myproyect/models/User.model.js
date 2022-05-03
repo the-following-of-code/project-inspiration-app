@@ -13,7 +13,11 @@ const userSchema = new Schema(
     books: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: "Book"
-    }]
+    }],
+    booksWatchlist: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Book"
+      }],
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`

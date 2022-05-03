@@ -2,6 +2,7 @@ const router = require("express").Router();
 const Book = require("../models/Books.model");
 const mongoose = require("mongoose");
 const User = require("../models/User.model");
+const { findById } = require("../models/User.model");
 
 
 /* GET home page */
@@ -22,7 +23,6 @@ router.get("/home", (req, res, next)=>{
 
 
 router.get("/home/user", (req, res, next)=>{
-  console.log(req.session.user._id);
   User.findById(req.session.user._id)
   .populate("books")
   .then((user)=>{
@@ -37,9 +37,9 @@ router.get("/home/user", (req, res, next)=>{
 })
 
 
-router.get("/home/user/edit", (req, res, next)=>{
-  res.render("user/user-edit")
-})
+// router.get("/home/user/edit", (req, res, next)=>{
+//   res.render("user/user-edit")
+// })
 
 router.get("/home/user/edit/user-create", (req, res, next)=>{
   res.render("user/user-create")
@@ -69,10 +69,6 @@ let bookId;
 })
 
 
-
-
-
-
 router.get("/home/user/:bookId/edit", (req, res, next) => {
   const bookId = req.params.bookId;
 
@@ -84,7 +80,6 @@ router.get("/home/user/:bookId/edit", (req, res, next) => {
       })
       .catch(error => next(error));
 })
-
 
 router.post('/books/:bookId/edit', (req, res, next) => {
   const bookId = req.params.bookId;
@@ -98,12 +93,6 @@ router.post('/books/:bookId/edit', (req, res, next) => {
     })
     .catch(error => next(error));
 });
-
-
-
-
-
-
 
 router.get("/home/:userId", (req, res, next) => {
   const bookId = req.params.userId;
@@ -133,5 +122,30 @@ router.post("/home/user/:bookId/delete", (req, res, next)=>{
   })
 })
 
+router.post("/home/user/:bookId/addwatchlist", (req, res, next)=>{
+  const id = req.params.bookId;
+  console.log(id);
+  User.findByIdAndUpdate(req.session.user._id,  {$push: {booksWatchlist: id}})
+  .then(()=>{
+    res.redirect(`/home/user/watchlist`)
+  })
+  .catch()
+
+})
+
+
+router.get("/home/user/watchlist", (req, res, next) => {
+  User.findById(req.session.user._id)
+    .populate("booksWatchlist")
+    .then((user) => {
+      console.log(user);
+      res.render("user/user-watchlist", {watchlist: user.booksWatchlist});
+    })
+
+    .catch((error) => {
+      console.log("error displaying User", error);
+      next(error);
+    });
+});
 
 module.exports = router;
