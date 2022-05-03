@@ -6,9 +6,12 @@ const bookSchema = new Schema(
     {
     title: String,
     author: String,
-    cover: String,
-    }
-)
+    cover: {
+        type: String,
+        default: 'https://picsum.photos/200/300'
+    } 
+    })
+
 
 const Book = model("Book", bookSchema);
 module.exports = Book;
