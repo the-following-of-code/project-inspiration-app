@@ -69,8 +69,6 @@ let bookId;
 })
 
 
-<<<<<<< HEAD
-=======
 
 
 
@@ -94,7 +92,6 @@ router.get("/home/user/:bookId/edit", (req, res, next) => {
 
 
 
->>>>>>> 881d285602a5e483ee8491f407ab2f934de1d0ad
 router.get("/home/:userId", (req, res, next) => {
   const bookId = req.params.userId;
   console.log(req.params.userId);
