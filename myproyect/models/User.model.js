@@ -14,9 +14,17 @@ const userSchema = new Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Book"
     }],
+    movies: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Movie"
+    }],
     booksWatchlist: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Book"
+      }],
+      moviesWatchlist: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Movie"
       }],
   },
   {
