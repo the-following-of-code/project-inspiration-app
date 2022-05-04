@@ -22,7 +22,7 @@ const userSchema = new Schema(
         type: mongoose.Schema.Types.ObjectId,
         ref: "Book"
       }],
-      moviesWatchlist: [{
+    moviesWatchlist: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Movie"
       }],

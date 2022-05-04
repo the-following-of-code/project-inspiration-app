@@ -1,20 +1,26 @@
 <h1>Visitors page</h1>
 
-<h1>{{_id}}</h1>
-
 <h2>{{username}}</h2>
 
 
 
 {{#each books}}
-<h2>{{this.title}}</h2>
-<h2>{{this.author}}</h2>
-<img src= "{{cover}}" alt="{{title}}">
+<h4>{{this.title}}</h4>
+<h6>{{this.author}}</h6>
+<img src= "{{this.cover}}" alt="{{this.title}}">
 <form action="/home/user/{{this._id}}/addwatchlist" method="post">
 <button type="submit">Add to Watchlist</button>
 </form>
 {{/each}}
 
+{{#each movies}}
+<h4>{{this.title}}</h4>
+<h6>{{this.type}}</h6>
+<img src= "{{this.cover}}" alt="{{this.title}}">
+<form action="/home/user/{{this._id}}/addmoviewatchlist" method="post">
+<button type="submit">Add to Watchlist</button>
+</form>
+{{/each}}
 
 
 <a href="/home">back</a>

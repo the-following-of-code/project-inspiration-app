@@ -11,6 +11,7 @@ const Movie = require("../models/Movie.model");
 router.get("/home", (req, res, next)=>{
   User.find()
   .populate("books")
+  .populate("movies")
   .then((usersArr)=>{
     res.render("home", {users: usersArr});
   })
@@ -35,8 +36,6 @@ router.get("/home/user", (req, res, next)=>{
   
 })
 
-
-
 //quilting
 router.get("/home/book-test-api", (req, res, next) => {
     axios.get("https://www.googleapis.com/books/v1/volumes?q=lordoftheringstwotowers")
@@ -60,32 +59,6 @@ router.get("/home/book-test-api", (req, res, next) => {
     })
 })
 
-
-
-// router.get("/home/user/user-create", (req, res, next)=>{
-//   res.render("user/user-create")
-// })
-
-// router.post("/home/user/user-create", (req, res, next)=>{
-//   let newBook = {
-//         title: req.body.title,
-//         author: req.body.author,
-//         cover: req.body.cover
-//       }
-// let bookId;
-//   Book.create(newBook)
-//   .then((book)=>{
-//     bookId = book._id;
-//     return User.findByIdAndUpdate(req.session.user._id, {$push: {books: bookId}})
-//   })
-//   .then(user=>{
-//   res.redirect("/home/user")
-//   })
-//   .catch(error => {
-//     console.log("error creating Book in DB", error);
-//     next(error);
-//   })
-// })
 
 
 
@@ -131,11 +104,6 @@ router.post("/home/user/book-create", (req, res, next)=>{
 
 
 
-
-
-
-
-
 router.get("/home/user/:bookId/edit", (req, res, next) => {
   const bookId = req.params.bookId;
 
@@ -162,6 +130,7 @@ router.get("/home/:userId", (req, res, next) => {
 
    User.findById(bookId)
     .populate('books')
+    .populate("movies")
     .then( (userObj) => {
        res.render('user/user-visitors', userObj);
     })
@@ -189,15 +158,18 @@ router.post("/home/user/:bookId/addwatchlist", (req, res, next)=>{
   .then(()=>{
     res.redirect(`/home/user/watchlist`)
   })
-  .catch()
-
+  .catch((error) => {
+    console.log("error adding book to watchlist", error);
+    next(error);
+  });
 })
 
 router.get("/home/user/watchlist", (req, res, next) => {
   User.findById(req.session.user._id)
     .populate("booksWatchlist")
+    .populate("moviesWatchlist")
     .then((user) => {
-      res.render("user/user-watchlist", {watchlist: user.booksWatchlist});
+      res.render("user/user-watchlist", user);
     })
 
     .catch((error) => {
@@ -247,12 +219,9 @@ router.post("/home/user/movie-create/add", (req, res, next)=>{
 })
 
 
-
-
-
-router.post("/home/user/:movieId/delete", (req, res, next)=>{
+router.post("/home/user/:movieId/deletemovie", (req, res, next)=>{
   const id = req.params.movieId;
-  Book.findByIdAndRemove(id)
+  Movie.findByIdAndRemove(id)
   .then(()=>{
    res.redirect("/home/user")
   })
@@ -262,7 +231,46 @@ router.post("/home/user/:movieId/delete", (req, res, next)=>{
   })
 })
 
+router.post("/home/user/:movieId/addmoviewatchlist", (req, res, next)=>{
+  const id = req.params.movieId;
+  console.log(id);
+  User.findByIdAndUpdate(req.session.user._id,  {$push: {moviesWatchlist: id}})
+  .then(()=>{
+    res.redirect(`/home/user/watchlist`)
+  })
+  .catch((error) => {
+    console.log("error adding book to watchlist", error);
+    next(error);
+  });
+})
 
+
+router.post("/home/user/:movieId/deletemovieswatchlist", (req, res, next)=>{
+  const id = req.params.movieId;
+  console.log(id);
+  User.findByIdAndUpdate(req.session.user._id,  {$pull: {moviesWatchlist:  id}})
+  .then(()=>{
+    res.redirect(`/home/user/watchlist`)
+  })
+  .catch((error) => {
+    console.log("error adding book to watchlist", error);
+    next(error);
+  });
+})
+
+
+router.post("/home/user/:movieId", (req, res, next)=>{
+  const movieId = req.params.movieId
+  let search = req.body.search
+  console.log(movieId);
+
+  
+    axios.get(`http://www.omdbapi.com/?i=${movieId}&apikey=b3be331c`) 
+      .then(response=>{
+        console.log(response);
+        res.render("user/movie-details", response.data)
+      })
+  })
 
 
 
