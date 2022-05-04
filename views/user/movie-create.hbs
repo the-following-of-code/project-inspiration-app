@@ -1,0 +1,18 @@
+<h2>Create a Movie</h2>
+
+
+ {{#each movies}}
+       <h4>{{this.Title}}</h4>
+       <img src="{{this.Poster}}" alt="{{this.Title}}">
+       <p>{{this.Type}}</p>
+
+<form action="/home/user/movie-create/add" method="POST">
+<input name="title" value="{{this.Title}}" hidden="">
+<input name="imdbID" value="{{this.imdbID}}" hidden="">
+<input name="cover" value="{{this.Poster}}" hidden="">
+<input name="year" value="{{this.Year}}" hidden="">
+<input name="type" value="{{this.Type}}" hidden="">
+       <button type="submit">Add to My Profile </button>
+       </form> 
+       <hr>
+       {{/each}}
