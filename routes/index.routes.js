@@ -36,31 +36,6 @@ router.get("/home/user", (req, res, next)=>{
   
 })
 
-//quilting
-router.get("/home/book-test-api", (req, res, next) => {
-    axios.get("https://www.googleapis.com/books/v1/volumes?q=lordoftheringstwotowers")
-    .then(response => {
-      let dataObj = response.data.items
-      
-      let coverLink = "";
-      for (let i = 0; i < dataObj.length; i++) {
-        if(response.data.items[i].volumeInfo.imageLinks) {
-          coverLink = response.data.items[i].volumeInfo.imageLinks
-          break;
-        }
-        
-      }
-      console.log(coverLink);
-      // console.log(response.data.items[4].volumeInfo);
-      res.render('books/book-test-api', coverLink)
-    })
-    .catch(err => {
-      console.log('Error getting character from API...', err);
-    })
-})
-
-
-
 
 
 router.post("/home/user/book-create", (req, res, next)=>{
@@ -69,6 +44,7 @@ router.post("/home/user/book-create", (req, res, next)=>{
     axios.get(`https://www.googleapis.com/books/v1/volumes?q=${search}`) 
       .then(response=>{
         res.render("user/book-create", {books: response.data.items})
+        // console.log(response.data.items);
       })
   })
 
@@ -100,6 +76,19 @@ router.post("/home/user/book-create", (req, res, next)=>{
 })
 
 
+
+
+
+router.post("/home/user/:bookId", (req, res, next)=>{
+  const bookId = req.params.bookId
+  let search = req.body.search
+
+    axios.get(`https://www.googleapis.com/books/v1/volumes/${bookId}`) 
+      .then(response=>{
+        console.log(response.data.volumeInfo);
+        res.render("user/book-details", response.data.volumeInfo)
+      })
+  })
 
 
 
