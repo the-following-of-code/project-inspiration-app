@@ -86,6 +86,7 @@ router.get("/home/:userId", (req, res, next) => {
 
    User.findById(bookId)
     .populate('books')
+    .populate("movies")
     .then( (userObj) => {
        res.render('user/user-visitors', userObj);
     })
@@ -113,15 +114,18 @@ router.post("/home/user/:bookId/addwatchlist", (req, res, next)=>{
   .then(()=>{
     res.redirect(`/home/user/watchlist`)
   })
-  .catch()
-
+  .catch((error) => {
+    console.log("error adding book to watchlist", error);
+    next(error);
+  });
 })
 
 router.get("/home/user/watchlist", (req, res, next) => {
   User.findById(req.session.user._id)
     .populate("booksWatchlist")
+    .populate("moviesWatchlist")
     .then((user) => {
-      res.render("user/user-watchlist", {watchlist: user.booksWatchlist});
+      res.render("user/user-watchlist", user);
     })
 
     .catch((error) => {
@@ -171,9 +175,9 @@ router.post("/home/user/movie-create/add", (req, res, next)=>{
 })
 
 
-router.post("/home/user/:movieId/delete", (req, res, next)=>{
+router.post("/home/user/:movieId/deletemovie", (req, res, next)=>{
   const id = req.params.movieId;
-  Book.findByIdAndRemove(id)
+  Movie.findByIdAndRemove(id)
   .then(()=>{
    res.redirect("/home/user")
   })
@@ -183,8 +187,31 @@ router.post("/home/user/:movieId/delete", (req, res, next)=>{
   })
 })
 
+router.post("/home/user/:movieId/addmoviewatchlist", (req, res, next)=>{
+  const id = req.params.movieId;
+  console.log(id);
+  User.findByIdAndUpdate(req.session.user._id,  {$push: {moviesWatchlist: id}})
+  .then(()=>{
+    res.redirect(`/home/user/watchlist`)
+  })
+  .catch((error) => {
+    console.log("error adding book to watchlist", error);
+    next(error);
+  });
+})
 
 
-
+router.post("/home/user/:movieId/deletemovieswatchlist", (req, res, next)=>{
+  const id = req.params.movieId;
+  console.log(id);
+  User.findByIdAndUpdate(req.session.user._id,  {$pull: {moviesWatchlist:  id}})
+  .then(()=>{
+    res.redirect(`/home/user/watchlist`)
+  })
+  .catch((error) => {
+    console.log("error adding book to watchlist", error);
+    next(error);
+  });
+})
 
 module.exports = router;
