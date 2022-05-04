@@ -9,6 +9,10 @@
 <img src="{{this.cover}}" alt="{{this.title}}">
 <a href="/home/user/{{this._id}}/edit">Edit Book</a>
 
+<form action="/home/user/{{this.bookId}}" method="post">
+<button type="submit">Details</button>
+</form>
+
 <form action="/home/user/{{this._id}}/delete" method="post">
 <button type="submit">Delete</button>
 </form>
@@ -33,6 +37,19 @@
 </form>
 <hr>
 {{/each}}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
