@@ -4,13 +4,15 @@
 
 <h3>{{this.username}}</h3>
 
-{{#each this.books}}
-<h5>{{this.title}}</h5>
-<img src="{{this.cover}}" alt="Cover">
-{{/each}}
+
+<h5>{{this.books.[0].title}}</h5>
+<img src="{{this.books.[0].cover}}" alt="Cover">
+
+
+<h5>{{this.movies.[0].title}}</h5>
+<img src= "{{this.movies.[0].cover}}" alt="{{this.title}}">
 
 <a href="/home/{{this._id}}">Visit the profile</a>
-
 <hr>
 {{/each}}
 

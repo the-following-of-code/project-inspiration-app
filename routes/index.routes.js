@@ -11,6 +11,7 @@ const Movie = require("../models/Movie.model");
 router.get("/home", (req, res, next)=>{
   User.find()
   .populate("books")
+  .populate("movies")
   .then((usersArr)=>{
     res.render("home", {users: usersArr});
   })
@@ -35,8 +36,6 @@ router.get("/home/user", (req, res, next)=>{
   
 })
 
-
-
 //quilting
 router.get("/home/book-test-api", (req, res, next) => {
     axios.get("https://www.googleapis.com/books/v1/volumes?q=lordoftheringstwotowers")
@@ -59,7 +58,6 @@ router.get("/home/book-test-api", (req, res, next) => {
       console.log('Error getting character from API...', err);
     })
 })
-
 
 
 router.get("/home/user/user-create", (req, res, next)=>{
@@ -240,5 +238,21 @@ router.post("/home/user/:movieId/deletemovieswatchlist", (req, res, next)=>{
     next(error);
   });
 })
+
+
+router.post("/home/user/:movieId", (req, res, next)=>{
+  const movieId = req.params.movieId
+  let search = req.body.search
+  console.log(movieId);
+
+  
+    axios.get(`http://www.omdbapi.com/?i=${movieId}&apikey=b3be331c`) 
+      .then(response=>{
+        console.log(response);
+        res.render("user/movie-details", response.data)
+      })
+  })
+
+
 
 module.exports = router;
