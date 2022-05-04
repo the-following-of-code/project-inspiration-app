@@ -9,7 +9,8 @@ const bookSchema = new Schema(
     cover: {
         type: String,
         default: 'https://picsum.photos/200/300'
-    } 
+    }
+  
     })
 
 

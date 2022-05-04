@@ -35,6 +35,33 @@ router.get("/home/user", (req, res, next)=>{
   
 })
 
+
+
+//quilting
+router.get("/home/book-test-api", (req, res, next) => {
+    axios.get("https://www.googleapis.com/books/v1/volumes?q=lordoftheringstwotowers")
+    .then(response => {
+      let dataObj = response.data.items
+      
+      let coverLink = "";
+      for (let i = 0; i < dataObj.length; i++) {
+        if(response.data.items[i].volumeInfo.imageLinks) {
+          coverLink = response.data.items[i].volumeInfo.imageLinks
+          break;
+        }
+        
+      }
+      console.log(coverLink);
+      // console.log(response.data.items[4].volumeInfo);
+      res.render('books/book-test-api', coverLink)
+    })
+    .catch(err => {
+      console.log('Error getting character from API...', err);
+    })
+})
+
+
+
 router.get("/home/user/user-create", (req, res, next)=>{
   res.render("user/user-create")
 })
