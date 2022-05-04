@@ -61,6 +61,47 @@
   </div>
 </div>
 
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#searchBook">
+  + Book
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="searchBook" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Search Books</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <form action="/home/user/book-create" method="POST">
+          <label> Title:
+            <input type="text" name="search">
+          </label>
+     
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button  class="btn btn-primary" type="submit">Search</button>
+         </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 {{!-- 
 {{#each }}
 <a href="/home/user/{{this.books.1._id}}/edit">Modify books info</a>

@@ -1,0 +1,20 @@
+<h2>Insert a book</h2>
+
+
+ {{#each books}}
+       <h4>{{this.volumeInfo.title}}</h4>
+       {{!-- <img src="{{this.Poster}}" alt="{{this.Title}}"> --}}
+       <p>{{this.volumeInfo.description}}</p>
+       <img src="{{this.volumeInfo.imageLinks.thumbnail}}" alt="">
+
+<form action="/home/user/book-create/add" method="POST">
+<input name="title" value="{{this.volumeInfo.title}}" hidden="">
+<input name="bookId" value="{{this.id}}" hidden="">
+<input name="author" value="{{this.volumeInfo.authors}}" hidden="">
+{{!-- {{#if imageLinks}} --}}
+<input name="cover" value="{{this.volumeInfo.imageLinks.thumbnail}}" hidden="">
+{{!-- {{/if}} --}}
+       <button type="submit">Add to My Profile </button>
+       </form> 
+       <hr>
+       {{/each}}

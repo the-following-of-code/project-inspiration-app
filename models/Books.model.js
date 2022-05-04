@@ -4,6 +4,7 @@ const {Schema, model} = require("mongoose");
 
 const bookSchema = new Schema(
     {
+    bookId: String,
     title: String,
     author: String,
     cover: {

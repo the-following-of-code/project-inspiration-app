@@ -62,30 +62,79 @@ router.get("/home/book-test-api", (req, res, next) => {
 
 
 
-router.get("/home/user/user-create", (req, res, next)=>{
-  res.render("user/user-create")
+// router.get("/home/user/user-create", (req, res, next)=>{
+//   res.render("user/user-create")
+// })
+
+// router.post("/home/user/user-create", (req, res, next)=>{
+//   let newBook = {
+//         title: req.body.title,
+//         author: req.body.author,
+//         cover: req.body.cover
+//       }
+// let bookId;
+//   Book.create(newBook)
+//   .then((book)=>{
+//     bookId = book._id;
+//     return User.findByIdAndUpdate(req.session.user._id, {$push: {books: bookId}})
+//   })
+//   .then(user=>{
+//   res.redirect("/home/user")
+//   })
+//   .catch(error => {
+//     console.log("error creating Book in DB", error);
+//     next(error);
+//   })
+// })
+
+
+
+
+router.post("/home/user/book-create", (req, res, next)=>{
+  let search = req.body.search
+  
+    axios.get(`https://www.googleapis.com/books/v1/volumes?q=${search}`) 
+      .then(response=>{
+        res.render("user/book-create", {books: response.data.items})
+      })
+  })
+
+  router.get("/home/user/book-create", (req, res, next)=>{
+    res.render("user/book-create", {books: response.data.items})
+  })
+
+  router.post("/home/user/book-create/add", (req, res, next)=>{
+    let newBook = {
+      bookId: req.body.bookId,
+      title: req.body.title,
+      author: req.body.author,
+      cover: req.body.cover
+    }
+    console.log(newBook);
+    Book.create(newBook)
+    .then(book => {
+      let id = book._id
+      console.log(book);
+      return User.findByIdAndUpdate(req.session.user._id, {$push: {books: id}})
+    })
+    .then(()=>{
+      res.redirect("/home/user")
+    })
+     .catch(error => {
+      console.log("error creating Book in DB", error);
+      next(error);
+    })
 })
 
-router.post("/home/user/user-create", (req, res, next)=>{
-  let newBook = {
-        title: req.body.title,
-        author: req.body.author,
-        cover: req.body.cover
-      }
-let bookId;
-  Book.create(newBook)
-  .then((book)=>{
-    bookId = book._id;
-    return User.findByIdAndUpdate(req.session.user._id, {$push: {books: bookId}})
-  })
-  .then(user=>{
-  res.redirect("/home/user")
-  })
-  .catch(error => {
-    console.log("error creating Book in DB", error);
-    next(error);
-  })
-})
+
+
+
+
+
+
+
+
+
 
 router.get("/home/user/:bookId/edit", (req, res, next) => {
   const bookId = req.params.bookId;
@@ -196,6 +245,9 @@ router.post("/home/user/movie-create/add", (req, res, next)=>{
         next(error);
       })
 })
+
+
+
 
 
 router.post("/home/user/:movieId/delete", (req, res, next)=>{
