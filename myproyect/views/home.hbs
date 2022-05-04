@@ -1,9 +1,12 @@
 <h1>HOME PAGE</h1>
-
+{{#if session.user}}
 <a href="/home/user">My Profile</a>
+{{/if}}
+
+
+
+
 {{#each users}}
-
-
 <h3>{{this.username}}</h3>
 
 {{#each this.books}}
@@ -17,3 +20,6 @@
 <hr>
 
 {{/each}}
+
+
+<a href="/home/book-test-api">API</a>

@@ -2,7 +2,7 @@ const router = require("express").Router();
 const Book = require("../models/Books.model");
 const mongoose = require("mongoose");
 const User = require("../models/User.model");
-
+const axios = require('axios');
 
 /* GET home page */
 router.get("/home", (req, res, next)=>{
@@ -37,13 +37,30 @@ router.get("/home/user", (req, res, next)=>{
 })
 
 
-router.get("/home/user/edit", (req, res, next)=>{
-  res.render("user/user-edit")
+
+//quilting
+router.get("/home/book-test-api", (req, res, next) => {
+    axios.get("https://www.googleapis.com/books/v1/volumes?q=lordoftheringstwotowers")
+    .then(response => {
+      let dataObj = response.data.items
+      
+      let coverLink = "";
+      for (let i = 0; i < dataObj.length; i++) {
+        if(response.data.items[i].volumeInfo.imageLinks) {
+          coverLink = response.data.items[i].volumeInfo.imageLinks
+          break;
+        }
+        
+      }
+      console.log(coverLink);
+      // console.log(response.data.items[4].volumeInfo);
+      res.render('books/book-test-api', coverLink)
+    })
+    .catch(err => {
+      console.log('Error getting character from API...', err);
+    })
 })
 
-router.get("/home/user/edit/user-create", (req, res, next)=>{
-  res.render("user/user-create")
-})
 
 
 

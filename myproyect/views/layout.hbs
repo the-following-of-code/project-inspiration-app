@@ -19,10 +19,13 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <a class="nav-link active" aria-current="page" href="/home">Home</a>
-        <a class="nav-link" href="/home/user">My Profile</a>
+
         {{#if session.user}}
+         <a class="nav-link" href="/home/user">My Profile</a>
          <a class="nav-link" href="/logout">Logout</a>
          {{/if}}
+
+        
     
       </div>
     </div>
