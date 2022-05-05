@@ -145,6 +145,7 @@ router.post("/home/user/:bookId/addwatchlist", (req, res, next)=>{
 })
 
 router.get("/home/user/watchlist", (req, res, next) => {
+  
   User.findById(req.session.user._id)
     .populate("booksWatchlist")
     .populate("moviesWatchlist")
