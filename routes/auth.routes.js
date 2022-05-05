@@ -19,8 +19,7 @@ router.get("/", isLoggedOut, (req, res) => {
   });
   
   router.post("/", isLoggedOut, (req, res, next) => {
-    console.log(req.body)
-    const { email, password } = req.body;
+    const {email, password } = req.body;
   
     if (!email) {
       return res.status(400).render("index", {
