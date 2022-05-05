@@ -158,8 +158,17 @@ router.get("/home/user/:bookId", (req, res, next)=>{
 })
 
 
-
-
+router.post("/home/user/:bookId/deletebookswatchlist", (req, res, next)=>{
+  const id = req.params.bookId;
+    User.findByIdAndUpdate(req.session.user._id,  {$pull: {booksWatchlist:  id}})
+  .then(()=>{
+    res.redirect(`/home/user/watchlist`)
+  })
+  .catch((error) => {
+    console.log("error adding book to watchlist", error);
+    next(error);
+  });
+})
 
 
 
@@ -264,9 +273,11 @@ router.post("/home/user/:movieId", (req, res, next)=>{
 })
 
 
+
 router.post("/home/user/:bookId/addwatchlist", (req, res, next)=>{
   const id = req.params.bookId;
   User.findByIdAndUpdate(req.session.user._id,  {$push: {booksWatchlist: id}})
+
   .then(()=>{
     res.redirect(`/home/user/watchlist`)
   })
@@ -282,6 +293,7 @@ router.get("/home/user/watchlist", (req, res, next) => {
     .populate("moviesWatchlist")
     .then((user) => {
       res.render("user/user-watchlist", user);
+      clg
     })
     .catch((error) => {
       console.log("error displaying User", error);
