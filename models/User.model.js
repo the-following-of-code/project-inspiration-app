@@ -4,10 +4,17 @@ const { Schema, model } = require("mongoose");
 // TODO: Please make sure you edit the user model to whatever makes sense in this case
 const userSchema = new Schema(
   {
+<<<<<<< HEAD
     // username: {
     //   type: String,
     //   // unique: true -> Ideally, should be unique, but its up to you
     // },
+=======
+    username: {
+      type: String,
+      unique: true
+    },
+>>>>>>> 37f41110388ebe0fd35168755a7902c3c0b7d0a4
     email: String,
     password: String,
     books: [{
