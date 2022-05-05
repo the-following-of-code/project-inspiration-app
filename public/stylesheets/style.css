@@ -1,4 +1,9 @@
 @font-face {
+
+
+  font-family: 'Roboto', sans-serif;
+  font-family: 'Rubik Glitch', cursive;
+  font-family: 'Rubik Glitch', cursive;
   font-family: 'Simplifica'!important;
   font-style: normal !important;
   font-weight: normal !important;
@@ -6,12 +11,12 @@
   }
 
 body {
-  background-color: #f7efea;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #FFEBC1;
+  font-family: "Roboto";
 }
 
 a {
-  color: #C69B7B;
+  color: #000000;
 }
 
 h1 {
@@ -19,7 +24,7 @@ h1 {
 }
 
 .navbar{
-  background-color: #3A3845 !important;
+  background-color: #6d9886 !important;
   /* color: #f7e2d2 */
 }
 
@@ -28,13 +33,47 @@ h1 {
 }
 
  .navbar-link{
-  color: #f7e2d2 !important;
+  color: #ffffff !important;
 }
 
 .navbar-light .navbar-brand{
-  color: #f7efea !important;
+  color: #fcfcfc !important;
 }
 
 .navbar-light .navbar-nav .nav-link{
-  color: #f7efea !important;
+  color: #fafafa !important;
+}
+
+#main-title{
+  font-family: "Rubik Glitch";
+  text-align: center;
+  font-size: 10em;
+  color: #D7A86E;
+  height: 250px;
+  padding-top: 150px;
+}
+
+
+.subtitle {
+  margin-top: 150px;
+  text-align: center;
+  font-size: 1.5em;
+  color: #6d9886;
+  font-weight: 700;
+}
+
+.form-log {
+ margin:100px 0 0 0;
+ text-align: center;
+}
+
+.sign-up {
+  margin-top: 50px;
+  text-align: center;
+}
+
+
+.form-control {
+  width: 300px;
+  margin: auto;
 }
