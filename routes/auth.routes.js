@@ -72,7 +72,7 @@ router.get("/signup", isLoggedOut, (req, res) => {
 });
 
 router.post("/signup", isLoggedOut, (req, res) => {
-  const { email, password } = req.body;
+  const { username, email, password } = req.body;
 
   if (!email) {
     return res.status(400).render("auth/signup", {
@@ -114,6 +114,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
       .then((hashedPassword) => {
         // Create a user and save it in the database
         return User.create({
+          username,
           email,
           password: hashedPassword,
         });
