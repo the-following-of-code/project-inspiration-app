@@ -44,6 +44,9 @@ router.post("/home/user/book-create", (req, res, next)=>{
         res.render("user/book-create", {books: response.data.items})
         // console.log(response.data.items);
       })
+      .catch(err=>{
+        console.log(err);
+      })
 })
 
   router.get("/home/user/book-create", (req, res, next)=>{
@@ -73,16 +76,19 @@ router.post("/home/user/book-create", (req, res, next)=>{
     })
 })
 
-router.get("/home/user/:bookId", (req, res, next)=>{
-  const bookId = req.params.bookId
-  let search = req.body.search
+// router.get("/home/user/:bookId", (req, res, next)=>{
+//   const bookId = req.params.bookId
+//   let search = req.body.search
 
-    axios.get(`https://www.googleapis.com/books/v1/volumes/${bookId}`) 
-      .then(response=>{
-        console.log(response.data);
-        res.render("user/book-details", response.data.volumeInfo)
-      })
-})
+//     axios.get(`https://www.googleapis.com/books/v1/volumes/${bookId}`) 
+//       .then(response=>{
+//         console.log(response.data);
+//         res.render("user/book-details", response.data.volumeInfo)
+//       })
+//       .catch(err=>{
+//         console.log("Error showing book details");
+//       })
+// })
 
 router.get("/home/user/:bookId/edit", (req, res, next) => {
   const bookId = req.params.bookId;
@@ -132,17 +138,6 @@ router.post("/home/user/:bookId/delete", (req, res, next)=>{
   })
 })
 
-router.post("/home/user/:bookId/addwatchlist", (req, res, next)=>{
-  const id = req.params.bookId;
-  User.findByIdAndUpdate(req.session.user._id,  {$push: {booksWatchlist: id}})
-  .then(()=>{
-    res.redirect(`/home/user/watchlist`)
-  })
-  .catch((error) => {
-    console.log("error adding book to watchlist", error);
-    next(error);
-  });
-})
 
 router.get("/home/user/watchlist", (req, res, next) => {
   
@@ -175,6 +170,9 @@ let search = req.body.search
     .then(response=>{
       // console.log(response.data.Search);
       res.render("user/movie-create", {movies: response.data.Search})
+    })
+    .catch(err=>{
+      console.log(err);
     })
 })
 
@@ -256,7 +254,36 @@ router.post("/home/user/:movieId", (req, res, next)=>{
         console.log(response);
         res.render("user/movie-details", response.data)
       })
+      .catch(err=>{
+        console.log(err);
+      })
 })
+
+
+router.post("/home/user/:bookId/addwatchlist", (req, res, next)=>{
+  const id = req.params.bookId;
+  User.findByIdAndUpdate(req.session.user._id,  {$push: {booksWatchlist: id}})
+  .then(()=>{
+    res.redirect(`/home/user/watchlist`)
+  })
+  .catch((error) => {
+    console.log("error adding book to watchlist", error);
+    next(error);
+  });
+})
+
+router.get("/home/user/watchlist", (req, res, next) => {
+  User.findById(req.session.user._id)
+    .populate("booksWatchlist")
+    .populate("moviesWatchlist")
+    .then((user) => {
+      res.render("user/user-watchlist", user);
+    })
+    .catch((error) => {
+      console.log("error displaying User", error);
+      next(error);
+    });
+});
 
 
 
