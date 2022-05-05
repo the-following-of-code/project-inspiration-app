@@ -5,10 +5,12 @@ const User = require("../models/User.model");
 const { findById } = require("../models/User.model");
 const { default: axios } = require("axios");
 const Movie = require("../models/Movie.model");
+const isLoggedOut = require("../middleware/isLoggedOut");
+const isLoggedIn = require("../middleware/isLoggedIn");
 
 
 /* GET home page */
-router.get("/home", (req, res, next)=>{
+router.get("/home", isLoggedIn, (req, res, next)=>{
   User.find()
   .populate("books")
   .populate("movies")
