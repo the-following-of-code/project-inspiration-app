@@ -76,19 +76,6 @@ router.post("/home/user/book-create", (req, res, next)=>{
     })
 })
 
-// router.get("/home/user/:bookId", (req, res, next)=>{
-//   const bookId = req.params.bookId
-//   let search = req.body.search
-
-//     axios.get(`https://www.googleapis.com/books/v1/volumes/${bookId}`) 
-//       .then(response=>{
-//         console.log(response.data);
-//         res.render("user/book-details", response.data.volumeInfo)
-//       })
-//       .catch(err=>{
-//         console.log("Error showing book details");
-//       })
-// })
 
 router.get("/home/user/:bookId/edit", (req, res, next) => {
   const bookId = req.params.bookId;
@@ -153,6 +140,22 @@ router.get("/home/user/watchlist", (req, res, next) => {
       next(error);
     });
 });
+
+
+router.get("/home/user/:bookId", (req, res, next)=>{
+  const bookId = req.params.bookId
+  let search = req.body.search
+
+    axios.get(`https://www.googleapis.com/books/v1/volumes/${bookId}`) 
+      .then(response=>{
+        console.log(response.data);
+        res.render("user/book-details", response.data.volumeInfo)
+      })
+      .catch(err=>{
+        console.log("Error showing book details");
+      })
+})
+
 
 
 
