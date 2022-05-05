@@ -36,8 +36,6 @@ router.get("/home/user", (req, res, next)=>{
   
 })
 
-
-
 router.post("/home/user/book-create", (req, res, next)=>{
   let search = req.body.search
   
@@ -46,11 +44,11 @@ router.post("/home/user/book-create", (req, res, next)=>{
         res.render("user/book-create", {books: response.data.items})
         // console.log(response.data.items);
       })
-  })
+})
 
   router.get("/home/user/book-create", (req, res, next)=>{
     res.render("user/book-create", {books: response.data.items})
-  })
+})
 
   router.post("/home/user/book-create/add", (req, res, next)=>{
     let newBook = {
@@ -75,23 +73,16 @@ router.post("/home/user/book-create", (req, res, next)=>{
     })
 })
 
-
-
-
-
-router.post("/home/user/:bookId", (req, res, next)=>{
+router.get("/home/user/:bookId", (req, res, next)=>{
   const bookId = req.params.bookId
   let search = req.body.search
 
     axios.get(`https://www.googleapis.com/books/v1/volumes/${bookId}`) 
       .then(response=>{
-        console.log(response.data.volumeInfo);
+        console.log(response.data);
         res.render("user/book-details", response.data.volumeInfo)
       })
-  })
-
-
-
+})
 
 router.get("/home/user/:bookId/edit", (req, res, next) => {
   const bookId = req.params.bookId;
@@ -106,7 +97,7 @@ router.get("/home/user/:bookId/edit", (req, res, next) => {
 router.post('/books/:bookId/edit', (req, res, next) => {
   const bookId = req.params.bookId;
   const { title, author, cover } = req.body;
- 
+
   Book.findByIdAndUpdate(bookId, { title, author, cover }, { new: true })
     .then(updatedBook => {
       res.redirect('/home/user')
@@ -167,9 +158,17 @@ router.get("/home/user/watchlist", (req, res, next) => {
     });
 });
 
+
+
+
+
+
+/////////Movie routes////////////////////////////////////////////////////////
+
+
 router.post("/home/user/movie-create", (req, res, next)=>{
 let search = req.body.search
-console.log(search);
+// console.log(search);
 
   axios.get(`http://www.omdbapi.com/?s=${search}&apikey=b3be331c`) 
     .then(response=>{
@@ -190,12 +189,12 @@ router.post("/home/user/movie-create/add", (req, res, next)=>{
         year: req.body.year,
         type: req.body.type
       }
-      console.log(newMovie);
+      // console.log(newMovie);
 
       Movie.create(newMovie)
       .then(movie=>{
         let id = movie._id
-        console.log(movie);
+        // console.log(movie);
         return User.findByIdAndUpdate(req.session.user._id, {$push: {movies: id}})
       })
       .then(()=>{
@@ -206,7 +205,6 @@ router.post("/home/user/movie-create/add", (req, res, next)=>{
         next(error);
       })
 })
-
 
 router.post("/home/user/:movieId/deletemovie", (req, res, next)=>{
   const id = req.params.movieId;
@@ -233,7 +231,6 @@ router.post("/home/user/:movieId/addmoviewatchlist", (req, res, next)=>{
   });
 })
 
-
 router.post("/home/user/:movieId/deletemovieswatchlist", (req, res, next)=>{
   const id = req.params.movieId;
   console.log(id);
@@ -247,7 +244,6 @@ router.post("/home/user/:movieId/deletemovieswatchlist", (req, res, next)=>{
   });
 })
 
-
 router.post("/home/user/:movieId", (req, res, next)=>{
   const movieId = req.params.movieId
   let search = req.body.search
@@ -259,7 +255,7 @@ router.post("/home/user/:movieId", (req, res, next)=>{
         console.log(response);
         res.render("user/movie-details", response.data)
       })
-  })
+})
 
 
 

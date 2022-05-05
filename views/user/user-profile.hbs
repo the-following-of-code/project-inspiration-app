@@ -7,9 +7,8 @@
 
 <h5>{{this.title}}</h5>
 <img src="{{this.cover}}" alt="{{this.title}}">
-<a href="/home/user/{{this._id}}/edit">Edit Book</a>
-
-<form action="/home/user/{{this.bookId}}" method="post">
+{{!-- <a href="/home/user/{{this._id}}/edit">Edit Book</a> --}}
+<form action="/home/user/{{bookId}}" method="get">
 <button type="submit">Details</button>
 </form>
 

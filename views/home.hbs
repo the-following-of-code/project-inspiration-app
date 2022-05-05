@@ -2,12 +2,12 @@
 
 {{#each users}}
 
-<h3>{{this.username}}</h3>
+<h3>{{this.email}}</h3>
 
-
+{{#if this.books}}
 <h5>{{this.books.[0].title}}</h5>
 <img src="{{this.books.[0].cover}}" alt="Cover">
-
+{{/if}}
 
 <h5>{{this.movies.[0].title}}</h5>
 <img src= "{{this.movies.[0].cover}}" alt="{{this.title}}">
