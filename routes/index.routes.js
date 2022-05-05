@@ -132,6 +132,7 @@ router.get("/home/user/watchlist", (req, res, next) => {
     .populate("booksWatchlist")
     .populate("moviesWatchlist")
     .then((user) => {
+      console.log(user);
       res.render("user/user-watchlist", user);
     })
 
