@@ -41,7 +41,7 @@
                                         <img class="img-fluid" alt="100%x280" src={{this.cover}}>
                                         <div class="card-body">
                                             <h6 class="card-title">{{this.title}}</h6>
-                                            <p class="card-text">{{movies.[5].type}}</p>
+                                            <p class="card-text">{{this.type}}</p>
                                         </div>
                                         <div class="buttons-card ">
                                             
@@ -74,7 +74,7 @@
                                         </div>
                                         <div class="buttons-card ">
                                             
-                                           <form action="/home/user/{{this.imdbID}}" method="post">
+                                           <form action="/home/user/{{this.bookId}}" method="post">
 <button type="submit" class="btn btn-primary">Details</button>
 </form>
 <form action="/home/user/{{this._id}}/deletemovieswatchlist" method="post">
