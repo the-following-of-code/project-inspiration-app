@@ -1,4 +1,9 @@
 @font-face {
+
+
+  font-family: 'Roboto', sans-serif;
+  font-family: 'Rubik Glitch', cursive;
+  font-family: 'Rubik Glitch', cursive;
   font-family: 'Simplifica'!important;
   font-style: normal !important;
   font-weight: normal !important;
@@ -77,6 +82,42 @@ a {
   width: 50% !important;
 }
 
+
+
+#main-title{
+  font-family: "Rubik Glitch";
+  text-align: center;
+  font-size: 10em;
+  color: #D7A86E;
+  height: 250px;
+  padding-top: 150px;
+}
+
+
+.subtitle {
+  margin-top: 150px;
+  text-align: center;
+  font-size: 1.5em;
+  color: #6d9886;
+  font-weight: 700;
+}
+
+.form-log {
+ margin:100px 0 0 0;
+ text-align: center;
+}
+
+.sign-up {
+  margin-top: 50px;
+  text-align: center;
+}
+
+
+.form-control {
+  width: 300px;
+  margin: auto;
+}
+
 .row{
   margin: 0% 3% !important;
 }
@@ -134,5 +175,5 @@ margin: 10%;
 }
 
 i{
-  
+
 }
