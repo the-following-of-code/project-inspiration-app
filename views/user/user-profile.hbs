@@ -3,14 +3,24 @@
 <p>{{username}}</p>
 
 <h3>Books</h3>
+
+
+
+
+
 {{#each books}}
 
 <h5>{{this.title}}</h5>
 <img src="{{this.cover}}" alt="{{this.title}}">
-<a href="/home/user/{{this._id}}/edit">Edit Book</a>
+
 <form action="/home/user/{{bookId}}" method="get">
 <button type="submit">Details</button>
 </form>
+
+<form action="/home/user/{{bookId}}/edit" method="get">
+<button type="submit">Edit</button>
+</form>
+
 
 <form action="/home/user/{{this._id}}/delete" method="post">
 <button type="submit">Delete</button>

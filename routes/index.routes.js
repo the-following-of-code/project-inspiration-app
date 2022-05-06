@@ -80,15 +80,31 @@ router.post("/home/user/book-create", (req, res, next)=>{
 })
 
 
-router.get("/home/user/:bookId/edit", (req, res, next) => {
-  const bookId = req.params.bookId;
+// router.get("/home/user/:bookId/edit", (req, res, next) => {
+//   const bookId = req.params.bookId;
 
-  Book.findById(bookId)
-      .then(bookToEdit => {
-        res.render('books/book-edit.hbs', bookToEdit);
+//   Book.findById(bookId)
+//       .then(bookToEdit => {
+//         res.render('books/book-edit.hbs', bookToEdit);
+//         console.log(bookToEdit)
+//       })
+//       .catch(error => next(error));
+// })
+
+
+router.get("/home/user/:bookId/edit", (req, res, next)=>{
+  const bookId = req.params.bookId
+
+    axios.get(`https://www.googleapis.com/books/v1/volumes/${bookId}`) 
+      .then(response=>{
+        console.log(response.data);
+        res.render("books/book-edit.hbs", response.data.volumeInfo)
       })
-      .catch(error => next(error));
+      .catch(err=>{
+        console.log("Error showing book details");
+      })
 })
+
 
 router.post('/books/:bookId/edit', (req, res, next) => {
   const bookId = req.params.bookId;
