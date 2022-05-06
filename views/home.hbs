@@ -1,18 +1,51 @@
-<h1>HOME PAGE</h1>
+
+
 
 {{#each users}}
+<div class="home">
+<p id="username" class="home-username col-1" >{{this.username}}</p>
 
-<h3>{{this.username}}</h3>
 
-{{#if this.books}}
+<div class=" user">
+{{#if movies.[0]}}
+                                <div class="col-md-5 mb-2">
+                                    <div class="card h-80">
+                                        <img class="img-fluid image-card-home" alt="100%x280" src={{movies.[0].cover}}>
+                                        <div class="card-body home-title">
+                                            <p class="card-title">{{movies.[0].title}}</p>
+                                        </div>
+                                  
+                                    </div>
+                                </div> 
+                               {{/if}}
+
+
+     {{#if books.[0]}}
+                                <div class="col-md-5 mb-2">
+                                    <div class="card h-80">
+                                        <img class="img-fluid image-card-home" alt="100%x280" src={{books.[0].cover}}>
+                                        <div class="card-body home-title">
+                                            <p class="card-title">{{books.[0].title}}</p>
+                                        </div>
+                                     
+                                    </div>
+                                </div> 
+                               {{/if}}
+
+                               </div>
+
+{{!-- {{#if this.books}}
 <h5>{{this.books.[0].title}}</h5>
 <img src="{{this.books.[0].cover}}" alt="Cover">
 {{/if}}
 
 <h5>{{this.movies.[0].title}}</h5>
-<img src= "{{this.movies.[0].cover}}" alt="{{this.title}}">
+<img src= "{{this.movies.[0].cover}}" alt="{{this.title}}"> --}}
 
-<a href="/home/{{this._id}}">Visit the profile</a>
+<a href="/home/{{this._id}}" class="btn btn-primary btn-home col-1">See Profile</a>
+</div>
 <hr>
+
 {{/each}}
+
 

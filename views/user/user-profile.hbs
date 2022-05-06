@@ -1,6 +1,4 @@
-<h1>My Profile</h1>
 
-<p>{{username}}</p>
 
 <h3>Books</h3>
 
@@ -8,6 +6,9 @@
 
 
 
+<p id="username">My Profile</p>
+
+{{!-- <h3>Books</h3>
 {{#each books}}
 
 <h5>{{this.title}}</h5>
@@ -45,19 +46,185 @@
 <button type="submit">Delete</button>
 </form>
 <hr>
-{{/each}}
+{{/each}} --}}
 
 
 
 
 
+<section class="pt-4 pb-1">
+    <div class="container">
+        <div class="row">
+            <div class="col-5">
+                <h2 class="mb-3">Movies </h2>
+            </div>
+            <div class="col-7 text-left">
+                <a class="btn btn-primary mb-3 mr-1" href="#carouselExampleIndicators2" role="button" data-slide="prev">
+                    <i class="fa fa-arrow-left"> < </i>
+                </a>
+                <a class="btn btn-primary mb-3 " href="#carouselExampleIndicators2" role="button" data-slide="next">
+                    <i class="fa fa-arrow-right"> > </i>
+                </a>
+            </div>
+            <div class="col-12">
+                <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
 
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="row">
+                                
 
+                                 {{#if movies.[0]}}
+                                <div class="col-md-4 mb-3">
+                                    <div class="card">
+                                        <img class="img-fluid" alt="100%x280" src={{movies.[0].cover}}>
+                                        <div class="card-body">
+                                            <h6 class="card-title">{{movies.[0].title}}</h6>
+                                            <p class="card-text">{{movies.[0].type}}</p>
+                                        </div>
+                                        <div class="buttons-card  ">
+                                            
+                                            <form action="/home/user/{{movies.[0].imdbID}}" method="post">
+                                            <button type="submit" class="btn btn-secondary">Details</button>
+                                            </form>
 
+                                            <form action="/home/user/{{movies.[0]._id}}/addmoviewatchlist" method="post">
+                                            <button type="submit" class="btn btn-primary">+ Watchlist</button>
+                                            </form>
+                                       
+                                        </div>
+                                    </div>
+                                </div> 
+                               {{/if}}
 
+                                   {{#if movies.[1]}}
+                                <div class="col-md-4 mb-3">
+                                    <div class="card">
+                                        <img class="img-fluid" alt="100%x280" src={{movies.[1].cover}}>
+                                        <div class="card-body">
+                                            <h6 class="card-title">{{movies.[1].title}}</h6>
+                                            <p class="card-text">{{movies.[1].type}}</p>
+                                        </div>
+                                        <div class="buttons-card ">
+                                            
+                                            <form action="/home/user/{{movies.[1].imdbID}}" method="post">
+                                            <button type="submit" class="btn btn-secondary">Details</button>
+                                            </form>
 
+                                            <form action="/home/user/{{movies.[1]._id}}/addmoviewatchlist" method="post">
+                                            <button type="submit" class="btn btn-primary">+ Watchlist</button>
+                                            </form>
+                                       
+                                        </div>
+                                    </div>
+                                </div> 
+                               {{/if}}
 
+                               
+                                 {{#if movies.[2]}}
+                                <div class="col-md-4 mb-3">
+                                    <div class="card">
+                                        <img class="img-fluid" alt="100%x280" src={{movies.[2].cover}}>
+                                        <div class="card-body">
+                                            <h6 class="card-title">{{movies.[2].title}}</h6>
+                                            <p class="card-text">{{movies.[2].type}}</p>
+                                        </div>
+                                        <div class="buttons-card ">
+                                            
+                                            <form action="/home/user/{{movies.[2].imdbID}}" method="post">
+                                            <button type="submit" class="btn btn-secondary">Details</button>
+                                            </form>
 
+                                            <form action="/home/user/{{movies.[2]._id}}/addmoviewatchlist" method="post">
+                                            <button type="submit" class="btn btn-primary">+ Watchlist</button>
+                                            </form>
+                                       
+                                        </div>
+                                    </div>
+                                </div> 
+                               {{/if}}
+                               
+                            </div>
+                        </div>
+                          {{#if movies.[3]}}
+                        <div class="carousel-item">
+                            <div class="row">
+
+                             
+                                <div class="col-md-4 mb-3">
+                                    <div class="card">
+                                        <img class="img-fluid" alt="100%x280" src={{movies.[3].cover}}>
+                                        <div class="card-body">
+                                            <h6 class="card-title">{{movies.[3].title}}</h6>
+                                            <p class="card-text">{{movies.[3].type}}</p>
+                                        </div>
+                                        <div class="buttons-card  ">
+                                            
+                                            <form action="/home/user/{{movies.[3].imdbID}}" method="post">
+                                            <button type="submit" class="btn btn-secondary">Details</button>
+                                            </form>
+
+                                            <form action="/home/user/{{movies.[3]._id}}/addmoviewatchlist" method="post">
+                                            <button type="submit" class="btn btn-primary">+ Watchlist</button>
+                                            </form>
+                                       
+                                        </div>
+                                    </div>
+                                </div> 
+                               {{/if}}
+
+                                   {{#if movies.[4]}}
+                                <div class="col-md-4 mb-3">
+                                    <div class="card">
+                                        <img class="img-fluid" alt="100%x280" src={{movies.[4].cover}}>
+                                        <div class="card-body">
+                                            <h6 class="card-title">{{movies.[4].title}}</h6>
+                                            <p class="card-text">{{movies.[4].type}}</p>
+                                        </div>
+                                        <div class="buttons-card ">
+                                            
+                                            <form action="/home/user/{{movies.[4].imdbID}}" method="post">
+                                            <button type="submit" class="btn btn-secondary">Details</button>
+                                            </form>
+
+                                            <form action="/home/user/{{movies.[4]._id}}/addmoviewatchlist" method="post">
+                                            <button type="submit" class="btn btn-primary">+ Watchlist</button>
+                                            </form>
+                                       
+                                        </div>
+                                    </div>
+                                </div> 
+                               {{/if}}
+
+                                  {{#if movies.[5]}}
+                                <div class="col-md-4 mb-3">
+                                    <div class="card">
+                                        <img class="img-fluid" alt="100%x280" src={{movies.[5].cover}}>
+                                        <div class="card-body">
+                                            <h6 class="card-title">{{movies.[5].title}}</h6>
+                                            <p class="card-text">{{movies.[5].type}}</p>
+                                        </div>
+                                        <div class="buttons-card ">
+                                            
+                                            <form action="/home/user/{{movies.[5].imdbID}}" method="post">
+                                            <button type="submit" class="btn btn-secondary">Details</button>
+                                            </form>
+
+                                            <form action="/home/user/{{movies.[5]._id}}/addmoviewatchlist" method="post">
+                                            <button type="submit" class="btn btn-primary">+ Watchlist</button>
+                                            </form>
+                                       
+                                        </div>
+                                    </div>
+                                </div> 
+                               {{/if}}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 
 
@@ -66,6 +233,7 @@
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
   + Movie
 </button>
+
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -90,6 +258,221 @@
     </div>
   </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+<hr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{!-- 
+{{#each }}
+<a href="/home/user/{{this.books.1._id}}/edit">Modify books info</a>
+{{/each}} --}}
+
+
+
+
+
+
+
+
+
+
+
+<section class="pt-4 pb-1">
+    <div class="container">
+        <div class="row">
+            <div class="col-5">
+                <h2 class="mb-3">Books </h2>
+            </div>
+            <div class="col-7 text-left">
+                <a class="btn btn-primary mb-3 mr-1" href="#carouselExampleIndicators2" role="button" data-slide="prev">
+                    <i class="fa fa-arrow-left"><</i>
+                </a>
+                <a class="btn btn-primary mb-3 " href="#carouselExampleIndicators2" role="button" data-slide="next">
+                    <i class="fa fa-arrow-right">></i>
+                </a>
+            </div>
+            <div class="col-12">
+                <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
+
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="row">
+                                
+
+                                 {{#if books.[0]}}
+                                <div class="col-md-4 mb-3">
+                                    <div class="card">
+                                        <img class="img-fluid" alt="100%x280" src={{books.[0].cover}}>
+                                        <div class="card-body">
+                                            <h6 class="card-title">{{books.[0].title}}</h6>
+                                            <p class="card-text">{{books.[0].author}}</p>
+                                        </div>
+                                        <div class="buttons-card  ">
+                                            
+                                            <form action="/home/user/{{books.[0].imdbID}}" method="post">
+                                            <button type="submit" class="btn btn-secondary">Details</button>
+                                            </form>
+
+                                            <form action="/home/user/{{books.[0]._id}}/addmoviewatchlist" method="post">
+                                            <button type="submit" class="btn btn-primary">+ Watchlist</button>
+                                            </form>
+                                       
+                                        </div>
+                                    </div>
+                                </div> 
+                               {{/if}}
+
+                                   {{#if books.[1]}}
+                                <div class="col-md-4 mb-3">
+                                    <div class="card">
+                                        <img class="img-fluid" alt="100%x280" src={{books.[1].cover}}>
+                                        <div class="card-body">
+                                            <h6 class="card-title">{{books.[1].title}}</h6>
+                                            <p class="card-text">{{books.[1].author}}</p>
+                                        </div>
+                                        <div class="buttons-card ">
+                                            
+                                            <form action="/home/user/{{books.[1].imdbID}}" method="post">
+                                            <button type="submit" class="btn btn-secondary">Details</button>
+                                            </form>
+
+                                            <form action="/home/user/{{books.[1]._id}}/addmoviewatchlist" method="post">
+                                            <button type="submit" class="btn btn-primary">+ Watchlist</button>
+                                            </form>
+                                       
+                                        </div>
+                                    </div>
+                                </div> 
+                               {{/if}}
+
+                               
+                                 {{#if books.[2]}}
+                                <div class="col-md-4 mb-3">
+                                    <div class="card">
+                                        <img class="img-fluid" alt="100%x280" src={{books.[2].cover}}>
+                                        <div class="card-body">
+                                            <h6 class="card-title">{{books.[2].title}}</h6>
+                                            <p class="card-text">{{books.[2].author}}</p>
+                                        </div>
+                                        <div class="buttons-card ">
+                                            
+                                            <form action="/home/user/{{books.[2].imdbID}}" method="post">
+                                            <button type="submit" class="btn btn-secondary">Details</button>
+                                            </form>
+
+                                            <form action="/home/user/{{books.[2]._id}}/addmoviewatchlist" method="post">
+                                            <button type="submit" class="btn btn-primary">+ Watchlist</button>
+                                            </form>
+                                       
+                                        </div>
+                                    </div>
+                                </div> 
+                               {{/if}}
+                               
+                            </div>
+                        </div>
+                          {{#if books.[3]}}
+                        <div class="carousel-item">
+                            <div class="row">
+
+                             
+                                <div class="col-md-4 mb-3">
+                                    <div class="card">
+                                        <img class="img-fluid" alt="100%x280" src={{books.[3].cover}}>
+                                        <div class="card-body">
+                                            <h6 class="card-title">{{books.[3].title}}</h6>
+                                            <p class="card-text">{{books.[3].author}}</p>
+                                        </div>
+                                        <div class="buttons-card  ">
+                                            
+                                            <form action="/home/user/{{books.[3].imdbID}}" method="post">
+                                            <button type="submit" class="btn btn-secondary">Details</button>
+                                            </form>
+
+                                            <form action="/home/user/{{books.[3]._id}}/addmoviewatchlist" method="post">
+                                            <button type="submit" class="btn btn-primary">+ Watchlist</button>
+                                            </form>
+                                       
+                                        </div>
+                                    </div>
+                                </div> 
+                               {{/if}}
+
+                                   {{#if books.[4]}}
+                                <div class="col-md-4 mb-3">
+                                    <div class="card">
+                                        <img class="img-fluid" alt="100%x280" src={{books.[4].cover}}>
+                                        <div class="card-body">
+                                            <h6 class="card-title">{{books.[4].title}}</h6>
+                                            <p class="card-text">{{books.[4].author}}</p>
+                                        </div>
+                                        <div class="buttons-card ">
+                                            
+                                            <form action="/home/user/{{books.[4].imdbID}}" method="post">
+                                            <button type="submit" class="btn btn-secondary">Details</button>
+                                            </form>
+
+                                            <form action="/home/user/{{books.[4]._id}}/addmoviewatchlist" method="post">
+                                            <button type="submit" class="btn btn-primary">+ Watchlist</button>
+                                            </form>
+                                       
+                                        </div>
+                                    </div>
+                                </div> 
+                               {{/if}}
+
+                                  {{#if books.[5]}}
+                                <div class="col-md-4 mb-3">
+                                    <div class="card">
+                                        <img class="img-fluid" alt="100%x280" src={{books.[5].cover}}>
+                                        <div class="card-body">
+                                            <h6 class="card-title">{{books.[5].title}}</h6>
+                                            <p class="card-text">{{books.[5].author}}</p>
+                                        </div>
+                                        <div class="buttons-card ">
+                                            
+                                            <form action="/home/user/{{books.[5].imdbID}}" method="post">
+                                            <button type="submit" class="btn btn-secondary">Details</button>
+                                            </form>
+
+                                            <form action="/home/user/{{books.[5]._id}}/addmoviewatchlist" method="post">
+                                            <button type="submit" class="btn btn-primary">+ Watchlist</button>
+                                            </form>
+                                       
+                                        </div>
+                                    </div>
+                                </div> 
+                               {{/if}}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#searchBook">
@@ -119,20 +502,3 @@
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-{{!-- 
-{{#each }}
-<a href="/home/user/{{this.books.1._id}}/edit">Modify books info</a>
-{{/each}} --}}

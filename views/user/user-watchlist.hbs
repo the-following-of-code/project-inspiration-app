@@ -1,6 +1,6 @@
 <h2>Watchlist</h2>
 
-<h3>Books</h3>
+{{!-- <h3>Books</h3>
 {{#each booksWatchlist}}
 <h3>{{this.title}}</h3>
 <p>{{this.author}}</p>
@@ -29,6 +29,62 @@
 <button type="submit">Delete</button>
 </form>
 
-{{/each}}
+{{/each}} --}}
 
 
+
+<div class="watchlist-card">
+{{#each moviesWatchlist}}
+
+                            <div class="col-md-4 mb-3">
+                                    <div class="card card-watchlist">
+                                        <img class="img-fluid" alt="100%x280" src={{this.cover}}>
+                                        <div class="card-body">
+                                            <h6 class="card-title">{{this.title}}</h6>
+                                            <p class="card-text">{{this.type}}</p>
+                                        </div>
+                                        <div class="buttons-card ">
+                                            
+                                           <form action="/home/user/{{this.imdbID}}" method="post">
+<button type="submit" class="btn btn-primary">Details</button>
+</form>
+<form action="/home/user/{{this._id}}/deletemovieswatchlist" method="post">
+<button type="submit" class="btn btn-danger">Delete</button>
+</form>
+                                       
+                                        </div>
+                                    </div>
+                                </div> 
+
+                                {{/each}}
+
+                                </div>
+
+
+
+<div class="watchlist-card">
+{{#each booksWatchlist}}
+
+                            <div class="col-md-4 mb-3">
+                                    <div class="card card-watchlist">
+                                        <img class="img-fluid" alt="100%x280" src={{this.cover}}>
+                                        <div class="card-body">
+                                            <h6 class="card-title">{{this.title}}</h6>
+                                            <p class="card-text">{{this.author}}</p>
+                                        </div>
+                                        <div class="buttons-card ">
+                                            
+                                           <form action="/home/user/{{this.bookId}}" method="post">
+<button type="submit" class="btn btn-primary">Details</button>
+</form>
+<form action="/home/user/{{this._id}}/deletemovieswatchlist" method="post">
+<button type="submit" class="btn btn-danger">Delete</button>
+</form>
+                                       
+                                        </div>
+                                    </div>
+                                </div> 
+
+                                {{/each}}
+
+                                </div>
