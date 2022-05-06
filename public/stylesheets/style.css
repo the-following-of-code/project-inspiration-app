@@ -72,6 +72,7 @@ a {
 .img-fluid{
   margin: 5% !important;
   height: 80%;
+  object-fit: contain;
 }
 
 .pt-5 .pb-5{
@@ -174,6 +175,3 @@ margin: 10%;
 
 }
 
-i{
-
-}

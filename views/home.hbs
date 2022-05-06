@@ -3,6 +3,8 @@
 
 {{#each users}}
 <div class="home">
+    {{!-- <div class="container">
+<div class="row"> --}}
 <p id="username" class="home-username col-1" >{{this.username}}</p>
 
 
@@ -34,16 +36,11 @@
 
                                </div>
 
-{{!-- {{#if this.books}}
-<h5>{{this.books.[0].title}}</h5>
-<img src="{{this.books.[0].cover}}" alt="Cover">
-{{/if}}
-
-<h5>{{this.movies.[0].title}}</h5>
-<img src= "{{this.movies.[0].cover}}" alt="{{this.title}}"> --}}
-
 <a href="/home/{{this._id}}" class="btn btn-primary btn-home col-1">See Profile</a>
-</div>
+{{!-- </div> --}}
+{{!-- </div> --}}
+    </div>
+
 <hr>
 
 {{/each}}
