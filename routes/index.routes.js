@@ -7,6 +7,7 @@ const { default: axios } = require("axios");
 const Movie = require("../models/Movie.model");
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
+const { response } = require("express");
 
 
 /* GET home page */
@@ -179,11 +180,10 @@ router.post("/home/user/:bookId/deletebookswatchlist", (req, res, next)=>{
 
 router.post("/home/user/movie-create", (req, res, next)=>{
 let search = req.body.search
-// console.log(search);
+
 
   axios.get(`http://www.omdbapi.com/?s=${search}&apikey=b3be331c`) 
     .then(response=>{
-      // console.log(response.data.Search);
       res.render("user/movie-create", {movies: response.data.Search})
     })
     .catch(err=>{
@@ -192,7 +192,7 @@ let search = req.body.search
 })
 
 router.get("/home/user/movie-create", (req, res, next)=>{
-  res.render("user/movie-create", {movies: response.data})
+   res.render("user/movie-create", {movies: response.data})
 })
 
 router.post("/home/user/movie-create/add", (req, res, next)=>{
