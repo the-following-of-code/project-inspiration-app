@@ -172,6 +172,37 @@ a {
 
 .card-watchlist{
 margin: 10%;
-
 }
 
+.sign-up{
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 30vw;
+  font-size: 1.1rem;
+}
+
+.sign-up h1{
+  margin: 10vh 0vh 5vh 0vh;
+}
+
+.sign-up-form{  
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.sign-up-form label{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 3vh;
+}
+
+.sign-up button{
+  background-color: #6D9886;
+  border: black solid 1px;
+  font-size: 1.2rem;
+  padding: 0.2rem;
+}
